@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./App.css";
-import imgDetail from './imgDetail'
+import PhotoDetail from './PhotoDetail'
 import axios from 'axios'
 
 
@@ -9,9 +9,9 @@ import axios from 'axios'
  function App() {
   
   const [photoDay, setphotoDay] = useState([]);
-  // const [PhotoDayFull, setphotoDayFull] = useState([])
+  const [PhotoDayFull, setphotoDayFull] = useState([])
 
- 
+  
 
   useEffect(() => {
     axios.get('https://api.nasa.gov/planetary/apod?api_key=58bwGTwMVgC02X0bACatqRmFJNhYiuMn3cVpDNfD&date=2012-03-14')
@@ -40,19 +40,6 @@ import axios from 'axios'
     </div>
   )
 
-  const Detail = ( {info} ) => (
-    <div className='info'>
-      <p>Copyright to {info.copyright}</p>
-      <button onClick = { () => 
-      info.explanation}
-      >More</button>
-    </div>
-  )
-  const PhotoDetail = ({data}) => (
-    <div>
-      <p>{data.explanation}</p>
-    </div>
-  )
   return (
     <div className="App">
       <h1>
@@ -64,11 +51,15 @@ import axios from 'axios'
       <div>
         <img src={photoDay.hdurl} alt='nasa'></img>
         {
-          <Detail info={photoDay}/>
+           <PhotoDetail PhotoDayFull= {photoDay} />
         }
       </div>
     </div>
   );
 }
-
+// function  close(props){
+//   return <div>
+//     <p>{props.explanation}</p>
+//     </div>
+// }
 export default App;
